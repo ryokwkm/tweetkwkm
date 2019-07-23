@@ -1,20 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
-import List from "@material-ui/core/List/index"
+
 import ListItem from "@material-ui/core/ListItem/index"
 import ListItemText from "@material-ui/core/ListItemText/index"
-import ListSubheader from "@material-ui/core/ListSubheader/index"
 import StarBorder from "@material-ui/icons/StarBorder"
-// import ListRecord from "./lists/ListRecord"
+import VirtualizedTable from "./VirtualizedTable"
 
 const styles = theme => ({
   root: {
     width: "100%",
+    height: 400,
+    // maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
-    position: "relative",
-    overflow: "auto",
-    maxHeight: window.parent.screen.height - 300,
   },
   listSection: {
     backgroundColor: "inherit",
@@ -44,22 +42,15 @@ class MainSportsList extends React.Component {
     )
   }
 
+  // monstersを整形
+
   ListNode() {
-    console.log(this.props.monsters)
     const { classes } = this.props
+    console.log(this.props)
     return (
-      <List className={classes.root} subheader={<li />}>
-        {this.props.monsters.map(article => (
-          <li key={`section-${article.id}`} className={classes.listSection}>
-            <ul className={classes.ul}>
-              <ListSubheader>{`${article.head} ${article.id}`}</ListSubheader>
-              {article.reactions.map(reaction =>
-                this.ChildListNode(article, reaction)
-              )}
-            </ul>
-          </li>
-        ))}
-      </List>
+      <div className={classes.root}>
+        <VirtualizedTable monsters={this.props.monsters} />
+      </div>
     )
   }
 

@@ -12,7 +12,7 @@ class Top extends React.Component {
   }
 
   componentDidMount() {
-    fetch(PATH.getUrl("prod/trends"))
+    fetch(PATH.getUrl("?country=13"))
       .then(res => res.json())
       .then(
         result => {

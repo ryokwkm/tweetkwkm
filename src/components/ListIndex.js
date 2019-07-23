@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 class ListIndex extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { offset: 0 }
+    this.state = { offset: 0, currentPosition: 0 }
   }
 
   render() {
