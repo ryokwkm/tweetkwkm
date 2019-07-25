@@ -7,7 +7,7 @@ class Top extends React.Component {
     this.state = {
       isLoaded: false,
       error: null,
-      monsters: [],
+      items: [],
     }
   }
 
@@ -18,7 +18,7 @@ class Top extends React.Component {
         result => {
           this.setState({
             isLoaded: true,
-            monsters: result,
+            items: result,
           })
         },
         error => {
@@ -30,26 +30,8 @@ class Top extends React.Component {
       )
   }
 
-  AjaxTestNode() {
-    if (this.state.error) {
-      return <div>Error: {this.state.error.message}</div>
-    } else if (!this.state.isLoaded) {
-      return <div>Loading...</div>
-    } else {
-      return (
-        <ul>
-          {this.state.monsters.map(monster => (
-            <li key={monster.id}>
-              {monster.name} {monster.hp}
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  }
-
   render() {
-    return <ListIndex monsters={this.state.monsters} />
+    return <ListIndex monsters={this.state.items} />
   }
 }
 
