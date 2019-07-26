@@ -3,12 +3,14 @@ import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
 import ListItem from "@material-ui/core/ListItem/ListItem"
 import ListItemText from "@material-ui/core/ListItemText/ListItemText"
+import "../../App.css"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import InboxIcon from "@material-ui/icons/Inbox"
 
 const styles = theme => ({
   articleHeader: {
     width: "100%",
-    height: 50,
-    // maxWidth: 360,
+    height: 30,
   },
 })
 
@@ -21,7 +23,6 @@ class ListHead extends React.Component {
   getArticleById(parentId) {
     const parents = this.props.parents
     var retArticle
-    console.log("check", parentId, parents, typeof parentId)
     if (parents) {
       parents.forEach(parent => {
         if (parent["id"] === parentId) {
@@ -33,9 +34,7 @@ class ListHead extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
-    var title = ""
-    var body = ""
+    // const { classes } = this.props
     const article = this.props.items[this.props.startIndex] // 今表示中の記事
 
     if (article) {
@@ -45,15 +44,21 @@ class ListHead extends React.Component {
       }
       const parent = this.getArticleById(parentId)
       if (parent) {
-        title = parent.head
-        body = parent.body
+        return (
+          <ListItem className={"ArticleHeader"}>
+            <a href={"https://twitter.com/sportskwkm/"} target={"_blank"}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+            </a>
+            <a href={parent.url} target={"_blank"}>
+              <ListItemText primary={parent.head} />
+            </a>
+          </ListItem>
+        )
       }
     }
-    return (
-      <ListItem className={classes.articleHeader}>
-        <ListItemText primary={title} secondary={body} />
-      </ListItem>
-    )
+    return null
   }
 }
 
