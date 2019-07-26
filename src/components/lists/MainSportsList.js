@@ -12,7 +12,7 @@ import * as PATH from "../../constants/common"
 const styles = theme => ({
   root: {
     width: "100%",
-    height: 400,
+    height: "100%",
     // maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
@@ -31,6 +31,7 @@ class MainSportsList extends React.Component {
 
     this.state = {
       items: [],
+      parents: [],
       moreItemsLoading: false,
       page: 0,
       startIndex: 0,
@@ -52,12 +53,14 @@ class MainSportsList extends React.Component {
     )
     const data = await response.json()
     var items = []
+    var parents = []
 
     // 親記事１件ごとにリアクションを挿入していく
     data.forEach(parent => {
       const children = Object.assign({}, parent.reactions)
       parent.reactions = null
       items.push(parent)
+      parents.push(parent)
 
       // リアクションごとの処理
       if (children) {
@@ -66,25 +69,30 @@ class MainSportsList extends React.Component {
         }
       }
     })
+    console.log(items)
 
     this.setState({
       moreItemsLoading: false,
       page: this.state.page + 1,
       items: this.state.items.concat(items),
+      parents: this.state.parents.concat(parents),
     })
   }
 
   handleScroll = startIndex => {
-    console.log(startIndex)
     this.setState({ startIndex: startIndex })
   }
 
   render() {
     const { classes } = this.props
+
     return (
       <div className={classes.root}>
-        <ListHead startIndex={this.state.startIndex} />
-        <br />
+        <ListHead
+          startIndex={this.state.startIndex}
+          parents={this.state.parents}
+          items={this.state.items}
+        />
         <VirtualizedTable
           items={this.state.items}
           hasNextPage={true}

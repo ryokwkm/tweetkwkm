@@ -1,6 +1,5 @@
 export const HOSTNAME = {
-  PRD:
-    "https://1faddlfvx4.execute-api.ap-northeast-1.amazonaws.com/prod/trends",
+  PRD: "http://ts.2chx.net/Api/get",
   DEV: "http://ts.2chx.net/Api/get",
 }
 
