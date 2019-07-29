@@ -13,11 +13,16 @@ export function getWindowSize() {
 }
 
 // 画面の幅を考慮に入れてリストの高さを決定
-// height ✕ width = 60000 程度
+// height ✕ width = 75000 程度
 export function getListHeight() {
   const win = getWindowSize()
+  const baseTotal = 75000
+  const baseWidth = 400
+  const widthCoefficient = 0.8
 
-  const height = 60000 / win.width
+  const widthFluctuation = (win.width - baseWidth) * widthCoefficient
+
+  const height = baseTotal / (baseWidth + widthFluctuation)
   console.log(win, height)
   return Math.floor(height)
 }

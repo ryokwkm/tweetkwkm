@@ -6,8 +6,9 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import * as window from "../../constants/window"
 import "../../App.css"
-import StarBorder from "@material-ui/icons/StarBorder"
-import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon"
+import reactStringReplace from "react-string-replace"
+import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar"
+import Avatar from "@material-ui/core/Avatar/Avatar"
 
 const HeaderHeight = 30
 const MyListHeight = window.getListHeight()
@@ -32,6 +33,42 @@ const InfinityList = ({
   handleScroll,
 }) => {
   //
+  const regBody = body => {
+    var after = reactStringReplace(body, /(https?:\/\/\S+)/, (match, i) => (
+      <a className={"link"} href={match}>
+        {match}
+      </a>
+    ))
+    after = reactStringReplace(after, /@\w+/, (match, i) => (
+      <a className={"reply"} href={`https://twitter.com/${match}`}>
+        @{match}
+      </a>
+    ))
+    after = reactStringReplace(
+      after,
+      /[#][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-]+/gm,
+      (match, i) => (
+        <a
+          className={"hash"}
+          href={`https://twitter.com/hashtag/${match}?src=hash`}
+        >
+          #{match}
+        </a>
+      )
+    )
+    return <span>{after}</span>
+  }
+
+  const regHashTag = body => {
+    const regHash = /(^|\W)(#[a-z\d][\w-]*)/gi
+    return (
+      <span>
+        {reactStringReplace(body, regHash, (hashMatch, i) => (
+          <span className={"hashTag"}>{hashMatch}</span>
+        ))}
+      </span>
+    )
+  }
 
   const Row = ({ index, style, ref }) => {
     const itemLoading = index >= items.length
@@ -43,6 +80,7 @@ const InfinityList = ({
       if (Number(userId) === 0) {
         userId = "1093499946609762305"
       }
+      var profileImage = items[index].user_image
 
       return (
         <ListItem
@@ -50,15 +88,19 @@ const InfinityList = ({
           className={"InfiniteRow"}
           style={{ ...style, height: MyListHeight + "px" }}
         >
-          <a
-            href={"https://twitter.com/intent/user?user_id=" + userId}
-            target={"_blank"}
-          >
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-          </a>
-          <ListItemText secondary={items[index].body} />
+          <ListItemAvatar>
+            <a
+              href={"https://twitter.com/intent/user?user_id=" + userId}
+              target={"_blank"}
+            >
+              <Avatar alt="Cindy Baker" src={profileImage} />
+            </a>
+          </ListItemAvatar>
+
+          <ListItemText
+            className={"InfiniteRowBody"}
+            primary={regHashTag(regBody(items[index].body))}
+          />
         </ListItem>
       )
     }

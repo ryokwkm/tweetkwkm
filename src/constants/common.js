@@ -1,6 +1,6 @@
 export const HOSTNAME = {
   PRD: "http://ts.2chx.net/Api/get",
-  DEV: "http://ts.2chx.net/Api/get",
+  DEV: "http://asuseka.net:8888/Api/get",
 }
 
 /**

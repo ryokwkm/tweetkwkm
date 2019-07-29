@@ -34,6 +34,21 @@
   text-decoration: none;
   color: #282c34;
 }
+.InfiniteList .InfiniteRow .InfiniteRowBody .link{
+  text-decoration: underline;
+  color: #dd1940;
+}
+.InfiniteList .InfiniteRow .InfiniteRowBody .reply{
+  color: #3389dd;
+  font-weight: bold;
+}
+.InfiniteList .InfiniteRow .InfiniteRowBody .hash{
+  color: #3389dd;
+  font-weight: bold;
+}
+.hashTag {
+  color: aqua;
+}
 
 .ArticleHeader{
   border-bottom: 1px solid #282c34;
