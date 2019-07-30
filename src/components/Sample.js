@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Button from "@material-ui/core/Button/index"
-import "../App.css"
+import "../scss/App.scss"
 
 class Sample extends Component {
   render() {

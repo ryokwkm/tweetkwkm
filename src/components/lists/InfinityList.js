@@ -5,7 +5,7 @@ import InfiniteLoader from "react-window-infinite-loader"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import * as window from "../../constants/window"
-import "../../App.css"
+import "../../scss/App.scss"
 import reactStringReplace from "react-string-replace"
 import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar"
 import Avatar from "@material-ui/core/Avatar/Avatar"
@@ -34,40 +34,37 @@ const InfinityList = ({
 }) => {
   //
   const regBody = body => {
-    var after = reactStringReplace(body, /(https?:\/\/\S+)/, (match, i) => (
-      <a className={"link"} href={match}>
+    let replacedText
+
+    // Match URLs
+    replacedText = reactStringReplace(body, /(https?:\/\/\S+)/g, (match, i) => (
+      <a className={"link"} key={match + i} href={match}>
         {match}
       </a>
     ))
-    after = reactStringReplace(after, /@\w+/, (match, i) => (
-      <a className={"reply"} href={`https://twitter.com/${match}`}>
+
+    // Match @-mentions
+    replacedText = reactStringReplace(replacedText, /@(\w+)/g, (match, i) => (
+      <a
+        className={"mention"}
+        key={match + i}
+        href={`https://twitter.com/${match}`}
+      >
         @{match}
       </a>
     ))
-    after = reactStringReplace(
-      after,
-      /[#][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-]+/gm,
-      (match, i) => (
-        <a
-          className={"hash"}
-          href={`https://twitter.com/hashtag/${match}?src=hash`}
-        >
-          #{match}
-        </a>
-      )
-    )
-    return <span>{after}</span>
-  }
 
-  const regHashTag = body => {
-    const regHash = /(^|\W)(#[a-z\d][\w-]*)/gi
-    return (
-      <span>
-        {reactStringReplace(body, regHash, (hashMatch, i) => (
-          <span className={"hashTag"}>{hashMatch}</span>
-        ))}
-      </span>
-    )
+    // Match hashtags
+    replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => (
+      <a
+        className={"hash"}
+        key={match + i}
+        href={`https://twitter.com/hashtag/${match}`}
+      >
+        #{match}
+      </a>
+    ))
+    return <span>{replacedText}</span>
   }
 
   const Row = ({ index, style, ref }) => {
@@ -76,11 +73,12 @@ const InfinityList = ({
     if (itemLoading) {
       return <RowContainer style={{ ...style, backgroundColor: "grey" }} />
     } else {
-      var userId = items[index].user_id
+      let userId = items[index].user_id
       if (Number(userId) === 0) {
         userId = "1093499946609762305"
       }
-      var profileImage = items[index].user_image
+      const profileImage = items[index].user_image
+      const secondary = <Avatar alt="Cindy Baker" src={profileImage} />
 
       return (
         <ListItem
@@ -99,7 +97,8 @@ const InfinityList = ({
 
           <ListItemText
             className={"InfiniteRowBody"}
-            primary={regHashTag(regBody(items[index].body))}
+            primary={regBody(items[index].body)}
+            secondary={secondary}
           />
         </ListItem>
       )

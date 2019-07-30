@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
 import ListItem from "@material-ui/core/ListItem/ListItem"
 import ListItemText from "@material-ui/core/ListItemText/ListItemText"
-import "../../App.css"
+import "../../scss/App.scss"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import InboxIcon from "@material-ui/icons/Inbox"
 
