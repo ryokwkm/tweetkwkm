@@ -1,0 +1,40 @@
+
+.InfiniteList{
+  & .InfiniteRow {
+    border-bottom: 1px solid #282c34;
+    padding: 5px;
+
+    & a{
+      text-decoration: none;
+      color: #282c34;
+    }
+
+    & .InfiniteRowBody{
+      & .link{
+        text-decoration: underline;
+        color: #dd1940;
+      }
+
+      & .mention{
+        color: #3389dd;
+        font-weight: bold;
+      }
+
+      & .hash{
+        color: #3389dd;
+        font-weight: bold;
+      }
+
+      & .favorite{
+        margin: 2px 2px 0 2px;
+      }
+
+      & .retweet{
+        margin: 2px 3px 0 10px;
+      }
+    }
+  }
+}
+.hashTag {
+  color: aqua;
+}

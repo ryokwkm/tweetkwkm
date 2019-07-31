@@ -61,7 +61,6 @@ class MainSportsList extends React.Component {
       parent.reactions = null
       items.push(parent)
       parents.push(parent)
-
       // リアクションごとの処理
       if (children) {
         for (const key in children) {
@@ -69,14 +68,13 @@ class MainSportsList extends React.Component {
         }
       }
     })
-    console.log(items)
-
     this.setState({
       moreItemsLoading: false,
       page: this.state.page + 1,
       items: this.state.items.concat(items),
       parents: this.state.parents.concat(parents),
     })
+    console.log("5")
   }
 
   handleScroll = startIndex => {

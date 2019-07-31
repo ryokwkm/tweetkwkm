@@ -16,13 +16,12 @@ export function getWindowSize() {
 // height ✕ width = 75000 程度
 export function getListHeight() {
   const win = getWindowSize()
-  const baseTotal = 75000
+  const baseTotal = 80000
   const baseWidth = 400
   const widthCoefficient = 0.8
 
   const widthFluctuation = (win.width - baseWidth) * widthCoefficient
 
   const height = baseTotal / (baseWidth + widthFluctuation)
-  console.log(win, height)
   return Math.floor(height)
 }
