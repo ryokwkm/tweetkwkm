@@ -1,15 +1,24 @@
 import React from "react"
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import Top from "./components/Top"
+import ReactGA from "react-ga"
+import createBrowserHistory from "history/createBrowserHistory"
+
+ReactGA.initialize("UA-15142129-4")
+const history = createBrowserHistory()
+history.listen(({ pathname }) => {
+  ReactGA.set({ page: pathname })
+  ReactGA.pageview(pathname)
+})
 
 const App = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <div>
       <Route exact path="/" component={Top} />
       <Route path="/about" component={About} />
       <Route path="/home" component={Home} />
     </div>
-  </BrowserRouter>
+  </Router>
 )
 
 const Home = () => (
