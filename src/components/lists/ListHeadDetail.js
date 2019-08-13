@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 })
 
-class ListHead extends React.Component {
+class ListHeadDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = { startIndex: this.props.startIndex }
@@ -77,10 +77,9 @@ class ListHead extends React.Component {
   }
 }
 
-ListHead.propTypes = {
+ListHeadDetail.propTypes = {
   startIndex: PropTypes.number.isRequired,
   parents: PropTypes.array.isRequired,
-  items: PropTypes.array.isRequired,
 }
 
-export default withStyles(styles)(ListHead)
+export default withStyles(styles)(ListHeadDetail)

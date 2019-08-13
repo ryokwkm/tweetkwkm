@@ -74,7 +74,6 @@ class MainSportsList extends React.Component {
       items: this.state.items.concat(items),
       parents: this.state.parents.concat(parents),
     })
-    console.log("5")
   }
 
   handleScroll = startIndex => {

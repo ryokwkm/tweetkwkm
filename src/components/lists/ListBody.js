@@ -54,7 +54,7 @@ class ListBody extends React.Component {
     // Match hashtags
     replacedText = reactStringReplace(
       replacedText,
-      /#([A-Za-z0-9-_ぁ-ヶ亜-黑]+)/g,
+      /#([A-Za-z0-9-_ぁ-ヶ亜-黑ー]+)/g,
       (match, i) => (
         <a
           className={"hash"}

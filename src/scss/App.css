@@ -21,6 +21,9 @@
 
 .ArticleHeader {
   border-bottom: 1px solid #282c34; }
+  .ArticleHeaderText span {
+    text-overflow: clip;
+    overflow: hidden; }
 
 .ArticleHeader a {
   text-decoration: none;
