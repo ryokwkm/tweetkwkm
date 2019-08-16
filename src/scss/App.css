@@ -20,14 +20,18 @@
   color: #61dafb; }
 
 .ArticleHeader {
-  border-bottom: 1px solid #282c34; }
+  border-bottom: 1px solid #282c34 !important; }
+  .ArticleHeader a {
+    text-decoration: none;
+    color: #282c34; }
   .ArticleHeaderText span {
     text-overflow: clip;
     overflow: hidden; }
-
-.ArticleHeader a {
-  text-decoration: none;
-  color: #282c34; }
+  .ArticleHeader .link {
+    text-decoration: underline;
+    color: #dd1940; }
+  .ArticleHeader .avater {
+    color: #FFF; }
 
 @keyframes App-logo-spin {
   from {

@@ -87,7 +87,10 @@ class ListBody extends React.Component {
         alignItems="center"
         button
         className={"InfiniteRow"}
-        style={{ ...this.props.style, height: window.getListHeight() + "px" }}
+        style={{
+          ...this.props.style,
+          height: window.getListSize().listHeight + "px",
+        }}
       >
         <ListItemAvatar>
           <a

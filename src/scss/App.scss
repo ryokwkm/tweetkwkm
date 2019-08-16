@@ -25,16 +25,26 @@
 
 
 .ArticleHeader{
-  border-bottom: 1px solid #282c34;
+  border-bottom: 1px solid #282c34 !important;
+
+  & a{
+    text-decoration: none;
+    color: #282c34;
+  }
 
   &Text span{
     text-overflow: clip;
     overflow: hidden;
   }
-}
-.ArticleHeader a{
-  text-decoration: none;
-  color: #282c34;
+
+  & .link{
+    text-decoration: underline;
+    color: #dd1940;
+  }
+
+  & .avater {
+    color: #FFF;
+  }
 }
 
 @keyframes App-logo-spin {

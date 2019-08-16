@@ -14,14 +14,25 @@ export function getWindowSize() {
 
 // 画面の幅を考慮に入れてリストの高さを決定
 // height ✕ width = 75000 程度
-export function getListHeight() {
+export function getListSize() {
+  // const baseTotal = 80000
+  // const baseWidth = 400
+  // const widthCoefficient = 0.8
   const win = getWindowSize()
-  const baseTotal = 80000
-  const baseWidth = 400
-  const widthCoefficient = 0.8
+  if (win.height > 1000) {
+    return {
+      width: win.width,
+      height: win.height,
+      listHeight: 80,
+    }
+  }
+  const listHeight = (1000 - win.width / 2) / 4 + 50
 
-  const widthFluctuation = (win.width - baseWidth) * widthCoefficient
-
-  const height = baseTotal / (baseWidth + widthFluctuation)
-  return Math.floor(height)
+  // const height = baseTotal / (baseWidth + widthFluctuation)
+  // return Math.floor(height)
+  return {
+    width: win.width,
+    height: win.height,
+    listHeight: listHeight,
+  }
 }

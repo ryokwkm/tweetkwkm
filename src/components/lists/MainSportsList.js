@@ -2,11 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
 
-// import ListItem from "@material-ui/core/ListItem/index"
-// import ListItemText from "@material-ui/core/ListItemText/index"
-// import StarBorder from "@material-ui/icons/StarBorder"
 import ListHead from "./ListHead"
-import VirtualizedTable from "./InfinityList"
+import InfinityList from "./InfinityList"
 import * as PATH from "../../constants/common"
 
 const styles = theme => ({
@@ -35,6 +32,8 @@ class MainSportsList extends React.Component {
       moreItemsLoading: false,
       page: 0,
       startIndex: 0,
+      windowSize: {},
+      isDetail: true,
     }
   }
 
@@ -80,6 +79,10 @@ class MainSportsList extends React.Component {
     this.setState({ startIndex: startIndex })
   }
 
+  handleSetDetail = () => {
+    this.setState({ isDetail: !this.state.isDetail })
+  }
+
   render() {
     const { classes } = this.props
 
@@ -89,13 +92,16 @@ class MainSportsList extends React.Component {
           startIndex={this.state.startIndex}
           parents={this.state.parents}
           items={this.state.items}
+          isDetail={this.state.isDetail}
+          handleSetDetail={this.handleSetDetail}
         />
-        <VirtualizedTable
+        <InfinityList
           items={this.state.items}
           hasNextPage={true}
           moreItemsLoading={this.state.moreItemsLoading}
           loadMoreItems={this.loadMoreItems.bind(this)}
           handleScroll={this.handleScroll.bind(this)}
+          isDetail={this.state.isDetail}
         />
       </div>
     )

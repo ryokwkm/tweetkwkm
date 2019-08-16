@@ -5,7 +5,8 @@ import * as window from "../../constants/window"
 import "../../scss/List.scss"
 import ListBody from "./ListBody"
 
-const HeaderHeight = 50
+const HeaderHeight = 100
+const HeaderHeightDetail = 300
 const styles = theme => ({
   infinateList: {
     width: "100%",
@@ -20,6 +21,7 @@ const InfinityList = ({
   hasNextPage,
   loadMoreItems,
   handleScroll,
+  isDetail,
 }) => {
   const Row = ({ index, style, ref }) => {
     return <ListBody items={items} style={style} index={index} />
@@ -28,9 +30,12 @@ const InfinityList = ({
   const itemCount = hasNextPage ? items.length + 1 : items.length
 
   const FixedList = ({ onItemsRendered, ref }) => {
-    const win = window.getWindowSize()
-    const height = win.height - HeaderHeight
-    const itemHeight = window.getListHeight()
+    var height = window.getListSize().height - HeaderHeight
+    if (isDetail) {
+      height = window.getListSize().height - HeaderHeightDetail
+    }
+
+    const itemHeight = window.getListSize().listHeight
     return (
       <FixedSizeList
         className={"InfiniteList"}
