@@ -10,7 +10,7 @@ const styles = theme => ({
   root: {
     width: "100%",
     height: "100%",
-    // maxWidth: 360,
+    maxWidth: 600,
     backgroundColor: theme.palette.background.paper,
   },
   listSection: {

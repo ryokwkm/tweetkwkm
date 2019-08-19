@@ -5,9 +5,9 @@ import { ThemeProvider } from "@material-ui/styles"
 import App from "./App"
 import theme from "./theme"
 import * as serviceWorker from "./serviceWorker"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Router, Route } from "react-router-dom"
 import ReactGA from "react-ga"
-import createBrowserHistory from "history/createBrowserHistory"
+import { createBrowserHistory } from "history"
 // import Top from "./components/Top"
 
 /**

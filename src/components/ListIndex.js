@@ -1,6 +1,7 @@
 import React from "react"
 import MainSportsList from "./lists/MainSportsList"
 import PropTypes from "prop-types"
+import AdSense from "react-adsense"
 
 class ListIndex extends React.Component {
   constructor(props) {
@@ -12,6 +13,12 @@ class ListIndex extends React.Component {
     return (
       <div>
         <MainSportsList monsters={this.props.monsters} />
+        <AdSense.Google
+          client="ca-pub-7387197978271555"
+          className="adsbygoogle"
+          format="auto"
+          style={{ display: "block" }}
+        />
       </div>
     )
   }
