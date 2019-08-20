@@ -105,8 +105,12 @@ class ListHead extends React.Component {
           "yyyy/MM/dd HH:mm"
         )
         const second = this.getHeaderDetail(parent.url)
+        var isMenuClass = "ArticleHeader"
+        if (this.props.startIndex !== 0) {
+          isMenuClass += " ArticleHeader-notMenu"
+        }
         return (
-          <Card className={"ArticleHeader"}>
+          <Card className={isMenuClass}>
             <CardActionArea onClick={this.handleClickSecondIcon}>
               <CardHeader
                 avatar={
@@ -140,29 +144,6 @@ class ListHead extends React.Component {
             </CardActionArea>
           </Card>
         )
-
-        // return (
-        //   <ListItem button className={"ArticleHeader"}>
-        //     <ListItemIcon>
-        //       <a href={parent.url} target={"_blank"}>
-        //         <Web />
-        //       </a>
-        //     </ListItemIcon>
-        //
-        //     <ListItemText
-        //       className={"ArticleHeaderText"}
-        //       primary={parent.head}
-        //       secondary={second}
-        //     />
-        //     <IconButton
-        //       edge="end"
-        //       aria-label="comments"
-        //       onClick={this.handleClickSecondIcon}
-        //     >
-        //       {this.KeyboradArrowNode()}
-        //     </IconButton>
-        //   </ListItem>
-        // )
       }
     }
     return null
@@ -175,6 +156,7 @@ ListHead.propTypes = {
   items: PropTypes.array.isRequired,
   isDetail: PropTypes.bool.isRequired,
   handleSetDetail: PropTypes.func.isRequired,
+  isScrollDown: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(ListHead)

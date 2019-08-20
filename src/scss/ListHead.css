@@ -11,6 +11,8 @@
     color: #dd1940; }
   .ArticleHeader .avater {
     color: #FFF; }
+  .ArticleHeader-notMenu {
+    margin-top: -64px; }
   .ArticleHeader-Body:last-child {
     padding-top: 0px;
     padding-bottom: 0px !important; }

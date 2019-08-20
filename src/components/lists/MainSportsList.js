@@ -1,10 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
-
+import HideOnScroll from "../HideOnScroll"
 import ListHead from "./ListHead"
 import InfinityList from "./InfinityList"
 import * as PATH from "../../constants/common"
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline"
+import Toolbar from "@material-ui/core/Toolbar/Toolbar"
+import MenuBar from "../MenuBar"
 
 const styles = theme => ({
   root: {
@@ -36,6 +39,7 @@ class MainSportsList extends React.Component {
       startIndex: 0,
       windowSize: {},
       isDetail: false,
+      isScrollDown: false,
     }
   }
 
@@ -74,10 +78,17 @@ class MainSportsList extends React.Component {
       page: this.state.page + 1,
       items: this.state.items.concat(items),
       parents: this.state.parents.concat(parents),
+      isScrollDown: false,
     })
   }
 
   handleScroll = startIndex => {
+    if (this.state.startIndex < startIndex) {
+      this.setState({ isScrollDown: true })
+    }
+    if (this.state.startIndex > startIndex) {
+      this.setState({ isScrollDown: false })
+    }
     this.setState({ startIndex: startIndex })
   }
 
@@ -87,15 +98,23 @@ class MainSportsList extends React.Component {
 
   render() {
     const { classes } = this.props
+    if (this.state.isScrollDown) {
+    }
 
     return (
       <div className={classes.root}>
+        <CssBaseline />
+        <HideOnScroll {...this.state}>
+          <MenuBar />
+        </HideOnScroll>
+        <Toolbar />
         <ListHead
           startIndex={this.state.startIndex}
           parents={this.state.parents}
           items={this.state.items}
           isDetail={this.state.isDetail}
           handleSetDetail={this.handleSetDetail}
+          isScrollDown={this.state.isScrollDown}
         />
         <InfinityList
           items={this.state.items}

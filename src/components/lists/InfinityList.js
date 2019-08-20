@@ -5,7 +5,7 @@ import * as window from "../../constants/window"
 import "../../scss/List.scss"
 import ListBody from "./ListBody"
 
-const HeaderHeight = 100
+const HeaderHeight = 0
 const HeaderHeightDetail = 200
 const styles = theme => ({
   infinateList: {
