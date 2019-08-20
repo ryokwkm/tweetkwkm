@@ -1,7 +1,15 @@
 import React from "react"
 import MainSportsList from "./lists/MainSportsList"
 import PropTypes from "prop-types"
-import AdSense from "react-adsense"
+import { withStyles } from "@material-ui/core"
+// import PropTypes from "prop-types"
+
+const styles = theme => ({
+  parent: {
+    width: "100%",
+    backgroundColor: theme.palette.background.default,
+  },
+})
 
 class ListIndex extends React.Component {
   constructor(props) {
@@ -10,22 +18,18 @@ class ListIndex extends React.Component {
   }
 
   render() {
+    const classes = this.props.classes
+    console.log(classes)
     return (
-      <div>
-        <MainSportsList monsters={this.props.monsters} />
-        <AdSense.Google
-          client="ca-pub-7387197978271555"
-          className="adsbygoogle"
-          format="auto"
-          style={{ display: "block" }}
-        />
+      <div className={"test"} className={classes.parent}>
+        <MainSportsList />
       </div>
     )
   }
 }
 
 ListIndex.propTypes = {
-  monsters: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-export default ListIndex
+export default withStyles(styles)(ListIndex)

@@ -19,14 +19,15 @@ export function getListSize() {
   // const baseWidth = 400
   // const widthCoefficient = 0.8
   const win = getWindowSize()
-  if (win.height > 1000) {
+  if (win.width > 600) {
     return {
       width: win.width,
       height: win.height,
-      listHeight: 80,
+      listHeight: (800 - 600 / 2) / 4 + 50,
     }
   }
-  const listHeight = (1000 - win.width / 2) / 4 + 50
+  const listHeight = (700 - win.width / 2) / 4 + 50
+  console.log(listHeight)
 
   // const height = baseTotal / (baseWidth + widthFluctuation)
   // return Math.floor(height)

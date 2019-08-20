@@ -12,6 +12,8 @@ const styles = theme => ({
     height: "100%",
     maxWidth: 600,
     backgroundColor: theme.palette.background.paper,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   listSection: {
     backgroundColor: "inherit",
@@ -39,7 +41,7 @@ class MainSportsList extends React.Component {
 
   async loadMoreItems(startIndex, stopIndex) {
     const API_LIMIT = 23 // 本来２４にしたいが、goバッチ側でなぜか23が保存されていない
-    console.log("Loading...", this.state.items.length, startIndex)
+    // console.log("Loading...", this.state.items.length, startIndex)
 
     // 24以上は実行しない
     if (this.state.page >= API_LIMIT) {
@@ -110,7 +112,6 @@ class MainSportsList extends React.Component {
 
 MainSportsList.propTypes = {
   classes: PropTypes.object.isRequired,
-  monsters: PropTypes.array.isRequired,
 }
 
 export default withStyles(styles)(MainSportsList)

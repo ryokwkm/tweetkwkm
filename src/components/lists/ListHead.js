@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
-import "../../scss/App.scss"
+import "../../scss/ListHead.scss"
 import { formatDate } from "../../constants/common"
 import Web from "@material-ui/icons/Web"
 import IconButton from "@material-ui/core/IconButton/IconButton"
@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography/Typography"
 import Collapse from "@material-ui/core/Collapse/Collapse"
 import CardHeader from "@material-ui/core/CardHeader/CardHeader"
 import Avatar from "@material-ui/core/Avatar/Avatar"
+import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea"
 
 const styles = theme => ({
   articleHeader: {
@@ -107,36 +108,37 @@ class ListHead extends React.Component {
         const second = this.getHeaderDetail(parent.url)
         return (
           <Card className={"ArticleHeader"}>
-            <CardHeader
-              avatar={
-                <a href={parent.url} target={"_blank"}>
-                  <Avatar className={"avater"}>
-                    <Web />
-                  </Avatar>
-                </a>
-              }
-              action={
-                <IconButton
-                  onClick={this.handleClickSecondIcon}
-                  aria-expanded={this.props.isDetail}
-                  aria-label="Show more"
-                >
-                  {this.KeyboradArrowNode()}
-                </IconButton>
-              }
-              title={parent.head}
-              subheader={created}
-            />
-            <Collapse in={this.props.isDetail} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography paragraph>
-                  {second}…{" "}
-                  <a href={parent.url} target={"_blank"} className={"link"}>
-                    続きを読む
+            <CardActionArea onClick={this.handleClickSecondIcon}>
+              <CardHeader
+                avatar={
+                  <a href={parent.url} target={"_blank"}>
+                    <Avatar className={"avater"}>
+                      <Web />
+                    </Avatar>
                   </a>
-                </Typography>
-              </CardContent>
-            </Collapse>
+                }
+                action={
+                  <IconButton
+                    aria-expanded={this.props.isDetail}
+                    aria-label="Show more"
+                  >
+                    {this.KeyboradArrowNode()}
+                  </IconButton>
+                }
+                title={parent.head}
+                subheader={created}
+              />
+              <Collapse in={this.props.isDetail} timeout="auto" unmountOnExit>
+                <CardContent className={"ArticleHeader-Body"}>
+                  <Typography paragraph>
+                    {second}…{" "}
+                    <a href={parent.url} target={"_blank"} className={"link"}>
+                      続きを読む
+                    </a>
+                  </Typography>
+                </CardContent>
+              </Collapse>
+            </CardActionArea>
           </Card>
         )
 

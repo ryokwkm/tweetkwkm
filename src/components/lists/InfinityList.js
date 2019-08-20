@@ -6,12 +6,11 @@ import "../../scss/List.scss"
 import ListBody from "./ListBody"
 
 const HeaderHeight = 100
-const HeaderHeightDetail = 300
+const HeaderHeightDetail = 200
 const styles = theme => ({
   infinateList: {
     width: "100%",
     marginTop: HeaderHeight,
-    // backgroundColor: theme.palette.background.paper,
   },
 })
 

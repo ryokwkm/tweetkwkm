@@ -2,6 +2,7 @@ import React from "react"
 import Top from "./components/Top"
 import ReactGA from "react-ga"
 
+// GAのみ
 class App extends React.Component {
   constructor(props) {
     super(props)

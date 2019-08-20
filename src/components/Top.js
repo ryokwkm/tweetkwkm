@@ -1,6 +1,8 @@
 import React from "react"
 import ListIndex from "./ListIndex"
-import * as PATH from "../constants/common"
+import AdSense from "react-adsense"
+
+// 大枠のデザイン。広告もここでやる
 class Top extends React.Component {
   constructor(props) {
     super(props)
@@ -11,27 +13,21 @@ class Top extends React.Component {
     }
   }
 
-  componentDidMount() {
-    fetch(PATH.getUrl("?country=13"))
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            items: result,
-          })
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error: error,
-          })
-        }
-      )
-  }
+  componentDidMount() {}
 
   render() {
-    return <ListIndex monsters={this.state.items} />
+    return (
+      <div className={"st-Container"}>
+        <ListIndex />
+        <AdSense.Google
+          client="ca-pub-7387197978271555"
+          className="adsbygoogle"
+          slot="xxxx"
+          format="auto"
+          style={{ display: "block" }}
+        />
+      </div>
+    )
   }
 }
 
