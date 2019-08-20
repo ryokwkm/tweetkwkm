@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core"
 import "../../scss/ListHead.scss"
 import { formatDate } from "../../constants/common"
 import Web from "@material-ui/icons/Web"
-import IconButton from "@material-ui/core/IconButton/IconButton"
 import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp"
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown"
 import Card from "@material-ui/core/Card/Card"
@@ -117,14 +116,14 @@ class ListHead extends React.Component {
                     </Avatar>
                   </a>
                 }
-                action={
-                  <IconButton
-                    aria-expanded={this.props.isDetail}
-                    aria-label="Show more"
-                  >
-                    {this.KeyboradArrowNode()}
-                  </IconButton>
-                }
+                // action={
+                //   <IconButton
+                //     aria-expanded={this.props.isDetail}
+                //     aria-label="Show more"
+                //   >
+                //     {this.KeyboradArrowNode()}
+                //   </IconButton>
+                // }
                 title={parent.head}
                 subheader={created}
               />
