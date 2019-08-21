@@ -54,7 +54,7 @@ class MainSportsList extends React.Component {
     this.setState({ moreItemsLoading: true })
     const response = await fetch(
       PATH.getUrl(
-        "?beforeDay=2&country=" + this.state.page + "&v=" + this.props.appId
+        "?beforeDay=0&country=" + this.state.page + "&v=" + this.props.appId
       )
     )
 
