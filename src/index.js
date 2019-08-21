@@ -47,6 +47,7 @@ ReactDOM.render(
         <Route path="/about" component={About} />
         <Route path="/home" component={Home} />
         <Route path="/sports(/?)" component={App} />
+        <Route exact path="/" component={App} />
       </div>
     </Router>
   </ThemeProvider>,

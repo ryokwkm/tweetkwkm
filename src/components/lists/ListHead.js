@@ -71,7 +71,6 @@ class ListHead extends React.Component {
 
   handleClickSecondIcon() {
     this.props.handleSetDetail()
-    console.log(this.getArticleDetailByIndex())
   }
 
   KeyboradArrowNode() {

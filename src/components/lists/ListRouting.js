@@ -3,15 +3,13 @@ import { withRouter } from "react-router"
 
 // ListのRoutingのみ行う
 class ListRouting extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
 
-  componentDidMount() {
     // 言語チェック
-    console.log(this.props)
     const params = this.props.location.pathname.split("/")
     if (params[2] && this.checkLang(params[2])) {
+      this.setAppId(params[1], params[2])
     } else {
       this.changeLangDefault()
     }
@@ -20,8 +18,10 @@ class ListRouting extends React.Component {
     // }
   }
 
+  componentDidMount() {}
+
   checkLang(param) {
-    const langs = ["ja", "en"]
+    const langs = ["ja", "en", "es"]
     var ok = false
     langs.forEach(lang => {
       if (param === lang) {
@@ -31,6 +31,14 @@ class ListRouting extends React.Component {
     return ok
   }
 
+  setAppId(funcName, lang) {
+    if (funcName === "sports" && lang === "es") {
+      this.props.self.setState({ appId: 5 })
+    } else if (funcName === "sports" && lang === "ja") {
+      this.props.self.setState({ appId: 1 })
+    }
+  }
+
   changeStartIndex() {}
 
   changeLangDefault() {
@@ -38,8 +46,7 @@ class ListRouting extends React.Component {
   }
 
   render() {
-    this.changeStartIndex()
-    return null
+    return this.props.children
   }
 }
 

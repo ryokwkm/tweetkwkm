@@ -14,16 +14,16 @@ class ListIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      lang: "",
-      appId: 1,
+      appId: 0,
     }
   }
 
   render() {
     return (
       <div className={this.props.parent}>
-        <ListRouting self={this} />
-        <MainSportsList appId={this.state.appId} />
+        <ListRouting self={this}>
+          <MainSportsList appId={this.state.appId} />
+        </ListRouting>
       </div>
     )
   }

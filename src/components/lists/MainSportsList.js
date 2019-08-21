@@ -38,30 +38,26 @@ class MainSportsList extends React.Component {
       windowSize: {},
       isDetail: false,
       isScrollDown: false,
-      appId: this.props.appId,
     }
   }
 
-  componentWillMount() {}
+  componentDidMount() {}
 
   async loadMoreItems(startIndex, stopIndex) {
     const API_LIMIT = 23 // 本来２４にしたいが、goバッチ側でなぜか23が保存されていない
     // console.log("Loading...", this.state.items.length, startIndex)
 
     // 24以上は実行しない
-    if (this.state.page >= API_LIMIT) {
+    if (this.state.appId === 0 || this.state.page >= API_LIMIT) {
       return
     }
     this.setState({ moreItemsLoading: true })
-
     const response = await fetch(
       PATH.getUrl(
-        "?beforeDay=2&country=" + this.state.page + "&v=" + this.state.appId
+        "?beforeDay=2&country=" + this.state.page + "&v=" + this.props.appId
       )
     )
-    console.log(
-      "?beforeDay=2&country=" + this.state.page + "&v=" + this.state.appId
-    )
+
     const data = await response.json()
     var items = []
     var parents = []
@@ -104,6 +100,7 @@ class MainSportsList extends React.Component {
 
   render() {
     const { classes } = this.props
+    if (this.props.appId === 0) return null
 
     return (
       <div className={classes.root}>

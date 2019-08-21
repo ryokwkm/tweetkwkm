@@ -35,9 +35,7 @@ class ListHeadDetail extends React.Component {
     return retArticle
   }
 
-  handleClickSecondIcon() {
-    console.log(this)
-  }
+  handleClickSecondIcon() {}
 
   render() {
     // const { classes } = this.props
