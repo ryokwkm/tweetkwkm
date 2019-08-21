@@ -2,7 +2,7 @@ import React from "react"
 import MainSportsList from "./lists/MainSportsList"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
-// import PropTypes from "prop-types"
+import ListRouting from "./lists/ListRouting"
 
 const styles = theme => ({
   parent: {
@@ -11,10 +11,19 @@ const styles = theme => ({
 })
 
 class ListIndex extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      lang: "",
+      appId: 1,
+    }
+  }
+
   render() {
     return (
       <div className={this.props.parent}>
-        <MainSportsList />
+        <ListRouting self={this} />
+        <MainSportsList appId={this.state.appId} />
       </div>
     )
   }

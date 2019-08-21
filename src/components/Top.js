@@ -4,17 +4,6 @@ import AdSense from "react-adsense"
 
 // 大枠のデザイン。広告もここでやる
 class Top extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoaded: false,
-      error: null,
-      items: [],
-    }
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <div className={"st-Container"}>

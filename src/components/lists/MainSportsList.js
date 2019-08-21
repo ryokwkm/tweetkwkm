@@ -5,8 +5,6 @@ import HideOnScroll from "../HideOnScroll"
 import ListHead from "./ListHead"
 import InfinityList from "./InfinityList"
 import * as PATH from "../../constants/common"
-import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline"
-import Toolbar from "@material-ui/core/Toolbar/Toolbar"
 import MenuBar from "../MenuBar"
 
 const styles = theme => ({
@@ -40,8 +38,11 @@ class MainSportsList extends React.Component {
       windowSize: {},
       isDetail: false,
       isScrollDown: false,
+      appId: this.props.appId,
     }
   }
+
+  componentWillMount() {}
 
   async loadMoreItems(startIndex, stopIndex) {
     const API_LIMIT = 23 // 本来２４にしたいが、goバッチ側でなぜか23が保存されていない
@@ -54,7 +55,12 @@ class MainSportsList extends React.Component {
     this.setState({ moreItemsLoading: true })
 
     const response = await fetch(
-      PATH.getUrl("?beforeDay=2&country=" + this.state.page)
+      PATH.getUrl(
+        "?beforeDay=2&country=" + this.state.page + "&v=" + this.state.appId
+      )
+    )
+    console.log(
+      "?beforeDay=2&country=" + this.state.page + "&v=" + this.state.appId
     )
     const data = await response.json()
     var items = []
@@ -98,16 +104,12 @@ class MainSportsList extends React.Component {
 
   render() {
     const { classes } = this.props
-    if (this.state.isScrollDown) {
-    }
 
     return (
       <div className={classes.root}>
-        <CssBaseline />
         <HideOnScroll {...this.state}>
           <MenuBar />
         </HideOnScroll>
-        <Toolbar />
         <ListHead
           startIndex={this.state.startIndex}
           parents={this.state.parents}
