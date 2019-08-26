@@ -11,7 +11,7 @@ const styles = theme => ({
   root: {
     width: "100%",
     height: "100%",
-    maxWidth: 600,
+    maxWidth: 768,
     backgroundColor: theme.palette.background.paper,
     marginLeft: "auto",
     marginRight: "auto",

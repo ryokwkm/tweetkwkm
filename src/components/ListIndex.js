@@ -9,22 +9,36 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
   },
 })
+export const RouteContext = React.createContext()
 
 class ListIndex extends React.Component {
   constructor(props) {
     super(props)
+    this.setLang.bind(this)
     this.state = {
+      lang: "",
+      func: "",
       appId: 0,
+      setLang: this.setLang,
     }
+  }
+
+  setLang(la) {
+    // うまく行かない
+    console.log("setlang", this)
+    console.log(this.setState)
+    this.setState({ lang: la })
   }
 
   render() {
     return (
-      <div className={this.props.parent}>
-        <ListRouting self={this}>
-          <MainSportsList appId={this.state.appId} />
-        </ListRouting>
-      </div>
+      <RouteContext.Provider value={this.state}>
+        <div className={this.props.parent}>
+          <ListRouting self={this}>
+            <MainSportsList appId={this.state.appId} />
+          </ListRouting>
+        </div>
+      </RouteContext.Provider>
     )
   }
 }
