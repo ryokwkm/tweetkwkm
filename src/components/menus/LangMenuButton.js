@@ -66,13 +66,15 @@ export default function LangMenuButton() {
               }}
             >
               {langOption.map(option => (
-                <MenuItem
-                  key={option.lang}
-                  selected={option.lang === context.lang}
-                  onClick={() => handleClose(option, context)}
-                >
-                  {option.name}
-                </MenuItem>
+                <a href={"/sports/" + option.lang} key={option.lang}>
+                  <MenuItem
+                    key={option.lang}
+                    selected={option.lang === context.lang}
+                    onClick={() => handleClose(option, context)}
+                  >
+                    {option.name}
+                  </MenuItem>
+                </a>
               ))}
             </Menu>
           </React.Fragment>
