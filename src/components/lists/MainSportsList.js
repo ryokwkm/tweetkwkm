@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
-import HideOnScroll from "../HideOnScroll"
+import HideOnScroll from "../menus/HideOnScroll"
 import ListHead from "./ListHead"
 import InfinityList from "./InfinityList"
 import * as PATH from "../../constants/common"
-import MenuBar from "../MenuBar"
+import MenuBar from "../menus/MenuBar"
 
 const styles = theme => ({
   root: {

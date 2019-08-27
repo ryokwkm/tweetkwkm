@@ -1,9 +1,11 @@
 import React from "react"
-import IconButton from "@material-ui/core/IconButton"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import MenuIcon from "@material-ui/icons/Menu"
-import { RouteContext } from "./ListIndex"
+import { RouteContext } from "../ListIndex"
+import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon"
+import InboxIcon from "@material-ui/icons/MoveToInbox"
+import ListItemText from "@material-ui/core/ListItemText/ListItemText"
+import ListItem from "@material-ui/core/ListItem/ListItem"
+import Menu from "@material-ui/core/Menu/Menu"
+import MenuItem from "@material-ui/core/MenuItem/MenuItem"
 
 const langOption = [
   { lang: "ja", name: "日本語" },
@@ -13,7 +15,7 @@ const langOption = [
 
 const ITEM_HEIGHT = 48
 
-export default function MenuButton() {
+export default function LangMenuButton() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -24,7 +26,8 @@ export default function MenuButton() {
   function handleClose(option, context) {
     console.log(context)
     if (option.lang !== context.lang) {
-      context.setLang()
+      // 別の言語が選択されたためリダイレクトする
+      // console.log(this)
     }
     setAnchorEl(null)
   }
@@ -33,8 +36,10 @@ export default function MenuButton() {
     <RouteContext.Consumer>
       {context => {
         return (
-          <div>
-            <IconButton
+          <React.Fragment>
+            <ListItem
+              button
+              key={context.lang}
               aria-controls="long-menu"
               aria-haspopup="true"
               onClick={handleClick}
@@ -42,8 +47,11 @@ export default function MenuButton() {
               color="inherit"
               aria-label="menu"
             >
-              <MenuIcon />
-            </IconButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"language"} />
+            </ListItem>
             <Menu
               id="long-menu"
               anchorEl={anchorEl}
@@ -67,7 +75,7 @@ export default function MenuButton() {
                 </MenuItem>
               ))}
             </Menu>
-          </div>
+          </React.Fragment>
         )
       }}
     </RouteContext.Consumer>

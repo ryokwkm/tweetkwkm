@@ -46,8 +46,6 @@ class ListRouting extends React.Component {
     this.props.self.setState({ lang: lang, func: funcName })
   }
 
-  changeStartIndex() {}
-
   changeLangDefault() {
     this.props.history.push("/sports/ja/")
   }
