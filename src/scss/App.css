@@ -1,9 +1,11 @@
-.st-Container {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
+.langList a {
+  text-decoration: none; }
+
+.langList .langText {
+  color: aliceblue; }
+
+.menuBar {
+  padding-left: 10px; }
 
 .MenuBar {
   padding-left: 16px !important;

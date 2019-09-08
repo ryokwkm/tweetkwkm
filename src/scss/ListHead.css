@@ -13,6 +13,15 @@
     color: #FFF; }
   .ArticleHeader-notMenu {
     margin-top: -64px; }
+  .ArticleHeader-Detail {
+    display: flex;
+    flex-direction: row; }
+  .ArticleHeader-Body {
+    flex: 3; }
   .ArticleHeader-Body:last-child {
     padding-top: 0px;
     padding-bottom: 0px !important; }
+  .ArticleHeader-Image {
+    flex: 1; }
+  .ArticleHeader .isMenuClassc {
+    display: flex; }

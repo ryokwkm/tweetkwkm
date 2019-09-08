@@ -1,18 +1,26 @@
 
+.drawer {
 
-.st-Container {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.langList{
+  & a{
+    text-decoration: none;
+  }
+
+  & .langText{
+    color: aliceblue;
+  }
+}
+
+.menuBar {
+  padding-left: 10px;
 }
 
 .MenuBar{
   padding-left: 16px !important;
   padding-right: 16px;
 }
-
 
 @keyframes App-logo-spin {
   from {
@@ -22,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+//
+//.st-Container {
+//  background-color: #282c34;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//  justify-content: center;
+//}

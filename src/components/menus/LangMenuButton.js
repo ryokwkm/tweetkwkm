@@ -6,6 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText/ListItemText"
 import ListItem from "@material-ui/core/ListItem/ListItem"
 import Menu from "@material-ui/core/Menu/Menu"
 import MenuItem from "@material-ui/core/MenuItem/MenuItem"
+import "../../scss/App.scss"
 
 const langOption = [
   { lang: "ja", name: "日本語" },
@@ -50,10 +51,11 @@ export default function LangMenuButton() {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={"language"} />
+              <ListItemText primary={"Language"} />
             </ListItem>
             <Menu
               id="long-menu"
+              className={"langList"}
               anchorEl={anchorEl}
               keepMounted
               open={open}
@@ -68,6 +70,7 @@ export default function LangMenuButton() {
               {langOption.map(option => (
                 <a href={"/sports/" + option.lang} key={option.lang}>
                   <MenuItem
+                    className={"langText"}
                     key={option.lang}
                     selected={option.lang === context.lang}
                     onClick={() => handleClose(option, context)}

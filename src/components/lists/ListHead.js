@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
 import "../../scss/ListHead.scss"
-import { formatDate } from "../../constants/common"
+import { formatDate, getMedia } from "../../constants/common"
 import Web from "@material-ui/icons/Web"
 import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp"
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown"
@@ -13,6 +13,7 @@ import Collapse from "@material-ui/core/Collapse/Collapse"
 import CardHeader from "@material-ui/core/CardHeader/CardHeader"
 import Avatar from "@material-ui/core/Avatar/Avatar"
 import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea"
+import CardMedia from "@material-ui/core/CardMedia/CardMedia"
 
 const styles = theme => ({
   articleHeader: {
@@ -119,26 +120,31 @@ class ListHead extends React.Component {
                     </Avatar>
                   </a>
                 }
-                // action={
-                //   <IconButton
-                //     aria-expanded={this.props.isDetail}
-                //     aria-label="Show more"
-                //   >
-                //     {this.KeyboradArrowNode()}
-                //   </IconButton>
-                // }
+                action={<KeyboradArrowNode isDetail={this.props.isDetail} />}
                 title={parent.head}
                 subheader={created}
               />
+              {/* <IconButton */}
+              {/* aria-expanded={this.props.isDetail} */}
+              {/* aria-label="Show more" */}
+              {/* > */}
+              {/* // this.KeyboradArrowNode() */}
+              {/* // </IconButton> */}
               <Collapse in={this.props.isDetail} timeout="auto" unmountOnExit>
-                <CardContent className={"ArticleHeader-Body"}>
-                  <Typography paragraph>
-                    {second}…{" "}
-                    <a href={parent.url} target={"_blank"} className={"link"}>
-                      続きを読む
-                    </a>
-                  </Typography>
-                </CardContent>
+                <div className={"ArticleHeader-Detail"}>
+                  <CardContent className={"ArticleHeader-Body"}>
+                    <Typography paragraph>
+                      {second}…{" "}
+                      <a href={parent.url} target={"_blank"} className={"link"}>
+                        続きを読む
+                      </a>
+                    </Typography>
+                  </CardContent>
+                  <CardMedia
+                    className={"ArticleHeader-Image"}
+                    image={getMedia(parent)}
+                  />
+                </div>
               </Collapse>
             </CardActionArea>
           </Card>
@@ -146,6 +152,14 @@ class ListHead extends React.Component {
       }
     }
     return null
+  }
+}
+
+function KeyboradArrowNode(isDetail) {
+  if (!isDetail) {
+    return <KeyboardArrowUp />
+  } else {
+    return <KeyboardArrowDown />
   }
 }
 

@@ -3,15 +3,16 @@ import AppBar from "@material-ui/core/AppBar/AppBar"
 import { withStyles } from "@material-ui/core"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import MailIcon from "@material-ui/icons/Mail"
+// import ListItem from "@material-ui/core/ListItem"
+// import ListItemIcon from "@material-ui/core/ListItemIcon"
+// import ListItemText from "@material-ui/core/ListItemText"
+// import InboxIcon from "@material-ui/icons/MoveToInbox"
+// import MailIcon from "@material-ui/icons/Mail"
 import Drawer from "@material-ui/core/Drawer/Drawer"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import LangMenuButton from "./LangMenuButton"
+import "../../scss/App.scss"
 
 const styles = theme => ({
   menuButton: {
@@ -45,40 +46,40 @@ class MenuBar extends React.Component {
   drawerMenu(side) {
     return (
       <div className={"drawer"} role="presentation">
-        <List
-          onClick={this.toggleDrawer(side, false)}
-          onKeyDown={this.toggleDrawer(side, false)}
-        >
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        {/* <List */}
+        {/* onClick={this.toggleDrawer(side, false)} */}
+        {/* onKeyDown={this.toggleDrawer(side, false)} */}
+        {/* > */}
+        {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => ( */}
+        {/* <ListItem button key={text}> */}
+        {/* <ListItemIcon> */}
+        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+        {/* </ListItemIcon> */}
+        {/* <ListItemText primary={text} /> */}
+        {/* </ListItem> */}
+        {/* ))} */}
+        {/* </List> */}
         <List>
           <LangMenuButton />
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        {/* <List> */}
+        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
+        {/* <ListItem button key={text}> */}
+        {/* <ListItemIcon> */}
+        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+        {/* </ListItemIcon> */}
+        {/* <ListItemText primary={text} /> */}
+        {/* </ListItem> */}
+        {/* ))} */}
+        {/* </List> */}
       </div>
     )
   }
 
   render() {
     return (
-      <AppBar>
+      <AppBar className={"menuBar"}>
         <div>
           <IconButton
             edge="start"

@@ -49,3 +49,13 @@ export function formatDate(date, format) {
   format = format.replace(/SSS/g, ("00" + date.getMilliseconds()).slice(-3))
   return format
 }
+
+export function getMedia(article) {
+  const og = JSON.parse(article.og_json)
+
+  if (og.Twitter.Image) {
+    return og.Twitter.Image
+  }
+  console.log(og.Twitter.Image)
+  return article
+}
