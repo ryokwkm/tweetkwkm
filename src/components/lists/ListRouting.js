@@ -38,10 +38,16 @@ class ListRouting extends React.Component {
     const funcName = params[1]
     const lang = params[2]
 
-    if (funcName === "sports" && lang === "es") {
-      this.props.self.setState({ appId: 5 })
-    } else if (funcName === "sports" && lang === "ja") {
-      this.props.self.setState({ appId: 1 })
+    if (funcName === "sports") {
+      if (lang === "es") {
+        this.props.self.setState({ appId: 5 })
+      } else if (lang === "ja") {
+        this.props.self.setState({ appId: 1 })
+      } else if (lang === "en") {
+        this.props.self.setState({ appId: 11 })
+      }
+    } else if (funcName === "fate") {
+      this.props.self.setState({ appId: 7 })
     }
     this.props.self.setState({ lang: lang, func: funcName })
   }
