@@ -36,7 +36,7 @@ class MainSportsList extends React.Component {
       page: 0,
       startIndex: 0,
       windowSize: {},
-      isDetail: false,
+      isDetail: true,
       isScrollDown: false,
     }
   }
