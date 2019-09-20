@@ -6,13 +6,16 @@ import Divider from "@material-ui/core/Divider"
 // import ListItem from "@material-ui/core/ListItem"
 // import ListItemIcon from "@material-ui/core/ListItemIcon"
 // import ListItemText from "@material-ui/core/ListItemText"
-// import InboxIcon from "@material-ui/icons/MoveToInbox"
-// import MailIcon from "@material-ui/icons/Mail"
+import InboxIcon from "@material-ui/icons/MoveToInbox"
 import Drawer from "@material-ui/core/Drawer/Drawer"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import LangMenuButton from "./LangMenuButton"
 import "../../scss/App.scss"
+import ListItem from "@material-ui/core/ListItem/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText/ListItemText"
+import * as common from "../../constants/common"
 
 const styles = theme => ({
   menuButton: {
@@ -43,6 +46,8 @@ class MenuBar extends React.Component {
   }
 
   drawerMenu(side) {
+    const entWord = common.getWordEnt()
+    const lang = common.getLocationLang()
     return (
       <div className={"drawer"} role="presentation">
         {/* <List */}
@@ -62,16 +67,17 @@ class MenuBar extends React.Component {
           <LangMenuButton />
         </List>
         <Divider />
-        {/* <List> */}
-        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
-        {/* <ListItem button key={text}> */}
-        {/* <ListItemIcon> */}
-        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-        {/* </ListItemIcon> */}
-        {/* <ListItemText primary={text} /> */}
-        {/* </ListItem> */}
-        {/* ))} */}
-        {/* </List> */}
+        <List className={"langList"}>
+          <a href={"/ent/" + lang}>
+            <ListItem button key={"ent"}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+
+              <ListItemText className={"langText"} primary={entWord} />
+            </ListItem>
+          </a>
+        </List>
       </div>
     )
   }

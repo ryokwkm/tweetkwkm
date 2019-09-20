@@ -50,6 +50,33 @@ export function formatDate(date, format) {
   return format
 }
 
+export function getLocation() {
+  const params = window.location.pathname.split("/")
+  return params
+}
+
+export function getLocationFunc() {
+  const params = getLocation()
+  return params[1]
+}
+
+export function getLocationLang() {
+  const params = getLocation()
+  return params[2]
+}
+
+export function getWordEnt() {
+  const lang = getLocationLang()
+
+  if (lang === "ja") {
+    return "エンターテイメント"
+  } else if (lang === "en") {
+    return "Entertainment"
+  } else if (lang === "es") {
+    return "Entretenido"
+  }
+}
+
 export function getMedia(article) {
   const og = JSON.parse(article.og_json)
 

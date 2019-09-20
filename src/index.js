@@ -47,6 +47,7 @@ ReactDOM.render(
         <Route path="/about" component={About} />
         <Route path="/home" component={Home} />
         <Route path="/sports(/?)" component={Sports} />
+        <Route path="/ent(/?)" component={Sports} />
         <Route path="/fate(/?)" component={Sports} />
         <Route exact path="/" component={Sports} />
       </div>

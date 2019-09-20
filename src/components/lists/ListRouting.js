@@ -1,5 +1,6 @@
 import React from "react"
 import { withRouter } from "react-router"
+import * as common from "../../constants/common"
 
 // ListのRoutingのみ行う
 class ListRouting extends React.Component {
@@ -34,16 +35,24 @@ class ListRouting extends React.Component {
   }
 
   setApplicationData() {
-    const params = this.props.location.pathname.split("/")
-    const funcName = params[1]
-    const lang = params[2]
+    // const params = this.props.location.pathname.split("/")
+    const funcName = common.getLocationFunc()
+    const lang = common.getLocationLang()
 
     if (funcName === "sports") {
-      if (lang === "es") {
-        this.props.self.setState({ appId: 5 })
-      } else if (lang === "ja") {
+      if (lang === "ja") {
         this.props.self.setState({ appId: 1 })
       } else if (lang === "en") {
+        this.props.self.setState({ appId: 12 })
+      } else if (lang === "es") {
+        this.props.self.setState({ appId: 5 })
+      }
+    } else if (funcName === "ent") {
+      if (lang === "ja") {
+        this.props.self.setState({ appId: 8 })
+      } else if (lang === "en") {
+        this.props.self.setState({ appId: 9 })
+      } else if (lang === "es") {
         this.props.self.setState({ appId: 11 })
       }
     } else if (funcName === "fate") {

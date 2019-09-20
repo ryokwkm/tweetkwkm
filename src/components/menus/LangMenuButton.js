@@ -36,6 +36,7 @@ export default function LangMenuButton() {
   return (
     <RouteContext.Consumer>
       {context => {
+        console.log(context)
         return (
           <React.Fragment>
             <ListItem
@@ -68,7 +69,10 @@ export default function LangMenuButton() {
               }}
             >
               {langOption.map(option => (
-                <a href={"/sports/" + option.lang} key={option.lang}>
+                <a
+                  href={"/" + context.func + "/" + option.lang}
+                  key={option.lang}
+                >
                   <MenuItem
                     className={"langText"}
                     key={option.lang}
