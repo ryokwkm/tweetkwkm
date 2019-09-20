@@ -1,13 +1,26 @@
 import React from "react"
-import ListIndex from "./ListIndex"
+import SportsIndex from "./SportsIndex"
 import AdSense from "react-adsense"
+import ReactGA from "react-ga"
 
 // 大枠のデザイン。広告もここでやる
-class Top extends React.Component {
+class Sports extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+    console.log("props", this.props)
+  }
+
+  componentDidMount() {
+    const { pathname } = this.props.location
+    ReactGA.set({ page: pathname })
+    ReactGA.pageview(pathname)
+  }
+
   render() {
     return (
       <div className={"st-Container"}>
-        <ListIndex />
+        <SportsIndex />
         <AdSense.Google
           client="ca-pub-7387197978271555"
           className="adsbygoogle"
@@ -20,4 +33,4 @@ class Top extends React.Component {
   }
 }
 
-export default Top
+export default Sports

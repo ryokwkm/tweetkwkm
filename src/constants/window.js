@@ -27,7 +27,7 @@ export function getListSize() {
     }
   }
   const listHeight = (700 - win.width / 2) / 4 + 50
-  console.log(listHeight)
+  // console.log(listHeight)
 
   // const height = baseTotal / (baseWidth + widthFluctuation)
   // return Math.floor(height)

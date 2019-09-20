@@ -28,7 +28,6 @@ class MenuBar extends React.Component {
   }
 
   toggleDrawer(side, open) {
-    console.log("toggle", side, open)
     side = "left"
     return event => {
       if (

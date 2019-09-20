@@ -102,7 +102,7 @@ class ListHead extends React.Component {
       if (parent) {
         const created = formatDate(
           new Date(parent.created.replace(/-/g, "/")),
-          "yyyy/MM/dd HH:mm"
+          "MM/dd HH:mm"
         )
         const second = this.getHeaderDetail(parent.url)
         var isMenuClass = "ArticleHeader"

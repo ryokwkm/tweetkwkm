@@ -3,7 +3,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 import MenuIcon from "@material-ui/icons/Menu"
-import { RouteContext } from "../ListIndex"
+import { RouteContext } from "../SportsIndex"
 
 const langOption = [
   { lang: "ja", name: "日本語" },

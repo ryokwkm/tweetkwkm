@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { ThemeProvider } from "@material-ui/styles"
-import App from "./App"
+import Sports from "./components/Sports"
 import theme from "./theme"
 import * as serviceWorker from "./serviceWorker"
 import { Router, Route } from "react-router-dom"
@@ -46,9 +46,9 @@ ReactDOM.render(
       <div>
         <Route path="/about" component={About} />
         <Route path="/home" component={Home} />
-        <Route path="/sports(/?)" component={App} />
-        <Route path="/fate(/?)" component={App} />
-        <Route exact path="/" component={App} />
+        <Route path="/sports(/?)" component={Sports} />
+        <Route path="/fate(/?)" component={Sports} />
+        <Route exact path="/" component={Sports} />
       </div>
     </Router>
   </ThemeProvider>,

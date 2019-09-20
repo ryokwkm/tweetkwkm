@@ -11,7 +11,7 @@ const styles = theme => ({
 })
 export const RouteContext = React.createContext()
 
-class ListIndex extends React.Component {
+class SportsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.setLang.bind(this)
@@ -43,8 +43,8 @@ class ListIndex extends React.Component {
   }
 }
 
-ListIndex.propTypes = {
+SportsIndex.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(ListIndex)
+export default withStyles(styles)(SportsIndex)

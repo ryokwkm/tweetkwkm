@@ -1,5 +1,5 @@
 import React from "react"
-import { RouteContext } from "../ListIndex"
+import { RouteContext } from "../SportsIndex"
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon"
 import InboxIcon from "@material-ui/icons/MoveToInbox"
 import ListItemText from "@material-ui/core/ListItemText/ListItemText"

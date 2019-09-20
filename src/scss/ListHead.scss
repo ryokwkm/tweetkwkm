@@ -32,7 +32,7 @@
     flex-direction: row;
   }
   &-Body {
-    flex: 3;
+    flex: 1;
   }
 
   &-Body:last-child {
@@ -43,6 +43,10 @@
   &-Image {
     flex: 1;
     //width: 450px;
+    padding-top: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+    background-origin: content-box;
   }
 
 
