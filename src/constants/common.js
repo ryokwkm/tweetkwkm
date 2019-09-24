@@ -3,6 +3,29 @@ export const HOSTNAME = {
   DEV: "https://ts.2chx.net/Api/get", // "http://asuseka.net:8888/Api/get",
 }
 
+export const WORDS = {
+  ent: {
+    ja: "エンターテイメント",
+    en: "Entertainment",
+    es: "Entretenido",
+  },
+  sports: { ja: "スポーツ", en: "Sports", es: "Deportes" },
+  language: { en: "Language" }, // 全ての国の人が読めるように英語で統一
+}
+
+// 対象言語のワードが無い時は英語を使う
+export function getWord(key) {
+  const lang = getLocationLang()
+  const defaultLang = "en"
+  key = key.toLowerCase()
+
+  if (WORDS[key][lang]) {
+    return WORDS[key][lang]
+  }
+
+  return WORDS[key][defaultLang]
+}
+
 /**
  * removeSlashEndOfPath
  * パスの末尾のスラッシュを削除
@@ -63,18 +86,6 @@ export function getLocationFunc() {
 export function getLocationLang() {
   const params = getLocation()
   return params[2]
-}
-
-export function getWordEnt() {
-  const lang = getLocationLang()
-
-  if (lang === "ja") {
-    return "エンターテイメント"
-  } else if (lang === "en") {
-    return "Entertainment"
-  } else if (lang === "es") {
-    return "Entretenido"
-  }
 }
 
 export function getMedia(article) {

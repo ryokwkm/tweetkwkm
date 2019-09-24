@@ -6,6 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText/ListItemText"
 import ListItem from "@material-ui/core/ListItem/ListItem"
 import Menu from "@material-ui/core/Menu/Menu"
 import MenuItem from "@material-ui/core/MenuItem/MenuItem"
+import * as common from "../../constants/common"
 import "../../scss/App.scss"
 
 const langOption = [
@@ -36,7 +37,7 @@ export default function LangMenuButton() {
   return (
     <RouteContext.Consumer>
       {context => {
-        console.log(context)
+        // console.log(context)
         return (
           <React.Fragment>
             <ListItem
@@ -52,7 +53,7 @@ export default function LangMenuButton() {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={"Language"} />
+              <ListItemText primary={common.getWord("language")} />
             </ListItem>
             <Menu
               id="long-menu"

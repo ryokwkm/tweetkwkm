@@ -46,37 +46,39 @@ class MenuBar extends React.Component {
   }
 
   drawerMenu(side) {
-    const entWord = common.getWordEnt()
     const lang = common.getLocationLang()
     return (
       <div className={"drawer"} role="presentation">
-        {/* <List */}
-        {/* onClick={this.toggleDrawer(side, false)} */}
-        {/* onKeyDown={this.toggleDrawer(side, false)} */}
-        {/* > */}
-        {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => ( */}
-        {/* <ListItem button key={text}> */}
-        {/* <ListItemIcon> */}
-        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-        {/* </ListItemIcon> */}
-        {/* <ListItemText primary={text} /> */}
-        {/* </ListItem> */}
-        {/* ))} */}
-        {/* </List> */}
-        <List>
-          <LangMenuButton />
-        </List>
-        <Divider />
         <List className={"langList"}>
           <a href={"/ent/" + lang}>
             <ListItem button key={"ent"}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-
-              <ListItemText className={"langText"} primary={entWord} />
+              <ListItemText
+                className={"langText"}
+                primary={common.getWord("ent")}
+              />
             </ListItem>
           </a>
+
+          <a href={"/sports/" + lang}>
+            <ListItem button key={"sports"}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText
+                className={"langText"}
+                primary={common.getWord("sports")}
+              />
+            </ListItem>
+          </a>
+        </List>
+
+        <Divider />
+
+        <List>
+          <LangMenuButton />
         </List>
       </div>
     )
