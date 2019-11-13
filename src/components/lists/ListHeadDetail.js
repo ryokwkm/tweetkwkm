@@ -1,20 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core"
-import ListItem from "@material-ui/core/ListItem/ListItem"
-import ListItemText from "@material-ui/core/ListItemText/ListItemText"
-import "../../scss/App.scss"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import InboxIcon from "@material-ui/icons/Inbox"
-import IconButton from "@material-ui/core/IconButton/IconButton"
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
+import "../../scss/ListHead.scss"
+import * as ListCommon from "./ListCommon"
+import CardContent from "@material-ui/core/CardContent/CardContent"
+import Typography from "@material-ui/core/Typography/Typography"
+import Collapse from "@material-ui/core/Collapse/Collapse"
+import CardMedia from "@material-ui/core/CardMedia/CardMedia"
+import theme from "../../theme"
 
-const styles = theme => ({
+const styles = {
   articleHeader: {
-    width: "100%",
-    height: 30,
+    backgroundColor: theme.palette.background.paper,
   },
-})
+}
 
 class ListHeadDetail extends React.Component {
   constructor(props) {
@@ -22,52 +21,59 @@ class ListHeadDetail extends React.Component {
     this.state = { startIndex: this.props.startIndex }
   }
 
-  getArticleById(parentId) {
-    const parents = this.props.parents
-    var retArticle
-    if (parents) {
-      parents.forEach(parent => {
-        if (parent["id"] === parentId) {
-          retArticle = parent
-        }
-      })
+  // 親記事本文
+  getHeaderDetailBody() {
+    const detail = ListCommon.getParentDetailByIndex(
+      this.props.items,
+      this.props.startIndex
+    )
+    if (detail) {
+      return detail.body
+    } else {
+      return ""
     }
-    return retArticle
   }
 
-  handleClickSecondIcon() {}
+  getHeaderDetailImage(parent) {
+    var imgSrc = ListCommon.getMedia(parent)
+    if (imgSrc != null) {
+      return <CardMedia className={"ArticleHeader-Image"} image={imgSrc} />
+    }
+    return null
+  }
 
   render() {
-    // const { classes } = this.props
     const article = this.props.items[this.props.startIndex] // 今表示中の記事
-
+    const { classes } = this.props
     if (article) {
-      var parentId = article.parent_id
-      if (Number(parentId) === 0) {
-        parentId = article.id
-      }
-      const parent = this.getArticleById(parentId)
+      const parent = ListCommon.getParentByIndex(
+        this.props.items,
+        this.props.parents,
+        this.props.startIndex
+      )
+
       if (parent) {
         return (
-          <ListItem className={"ArticleHeader"}>
-            <ListItemIcon>
-              <a href={"https://twitter.com/sportskwkm/"} target={"_blank"}>
-                <InboxIcon />
-              </a>
-            </ListItemIcon>
-
-            <ListItemText
-              className={"ArticleHeaderText"}
-              primary={parent.head}
-            />
-            <IconButton
-              edge="end"
-              aria-label="comments"
-              onClick={this.handleClickSecondIcon}
+          <div>
+            <Collapse
+              in={this.props.isDetail}
+              timeout="auto"
+              className={classes.articleHeader + " ArticleHeader-Collapse"}
+              unmountOnExit
             >
-              <KeyboardArrowRight />
-            </IconButton>
-          </ListItem>
+              <div className={"ArticleHeader-Detail"}>
+                <CardContent className={"ArticleHeader-Body"}>
+                  <Typography paragraph>
+                    {this.getHeaderDetailBody()}…{" "}
+                    <a href={parent.url} target={"_blank"} className={"link"}>
+                      続きを読む
+                    </a>
+                  </Typography>
+                </CardContent>
+                {this.getHeaderDetailImage(parent)}
+              </div>
+            </Collapse>
+          </div>
         )
       }
     }
@@ -78,6 +84,8 @@ class ListHeadDetail extends React.Component {
 ListHeadDetail.propTypes = {
   startIndex: PropTypes.number.isRequired,
   parents: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired,
+  isDetail: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(ListHeadDetail)

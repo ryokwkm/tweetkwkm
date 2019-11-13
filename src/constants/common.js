@@ -87,23 +87,3 @@ export function getLocationLang() {
   const params = getLocation()
   return params[2]
 }
-
-export function getMedia(article) {
-  const og = JSON.parse(article.og_json)
-
-  if (Array.isArray(og.Videos) && og.Videos.length > 0) {
-    console.log(og.Videos)
-  }
-  if (og.Twitter.Image) {
-    return og.Twitter.Image
-  }
-  if (Array.isArray(og.Images) && og.Images.length > 0) {
-    if (og.Images[0].Url) {
-      return og.Images[0].Url
-    }
-  } else {
-    console.log(og)
-  }
-
-  return article
-}

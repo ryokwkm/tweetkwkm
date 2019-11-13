@@ -2,6 +2,7 @@
 
 .ArticleHeader{
   border-bottom: 1px solid #282c34 !important;
+  margin-top: 30px;
 
   & a{
     text-decoration: none;
@@ -22,9 +23,9 @@
     color: #FFF;
   }
 
-  &-notMenu {
-    margin-top: -64px;
-  }
+  //&-notMenu {
+  //  margin-top: -64px;
+  //}
 
 
   &-Detail {
@@ -47,6 +48,11 @@
     padding-right: 16px;
     margin-bottom: 16px;
     background-origin: content-box;
+  }
+
+  &-Collapse {
+    position: absolute;
+    top: 120px;
   }
 
 

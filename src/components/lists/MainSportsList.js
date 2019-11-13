@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
-import HideOnScroll from "../menus/HideOnScroll"
+// import HideOnScroll from "../menus/HideOnScroll"
 import ListHead from "./ListHead"
 import InfinityList from "./InfinityList"
 import * as PATH from "../../constants/common"
 import MenuBar from "../menus/MenuBar"
+import ListHeadDetail from "./ListHeadDetail"
 
 const styles = theme => ({
   root: {
@@ -105,9 +106,10 @@ class MainSportsList extends React.Component {
 
     return (
       <div className={classes.root}>
-        <HideOnScroll {...this.state}>
-          <MenuBar />
-        </HideOnScroll>
+        {/* <HideOnScroll {...this.state}> */}
+        {/*  <MenuBar /> */}
+        {/* </HideOnScroll> */}
+        <MenuBar />
         <ListHead
           startIndex={this.state.startIndex}
           parents={this.state.parents}
@@ -122,6 +124,12 @@ class MainSportsList extends React.Component {
           moreItemsLoading={this.state.moreItemsLoading}
           loadMoreItems={this.loadMoreItems.bind(this)}
           handleScroll={this.handleScroll.bind(this)}
+          isDetail={this.state.isDetail}
+        />
+        <ListHeadDetail
+          startIndex={this.state.startIndex}
+          parents={this.state.parents}
+          items={this.state.items}
           isDetail={this.state.isDetail}
         />
       </div>
