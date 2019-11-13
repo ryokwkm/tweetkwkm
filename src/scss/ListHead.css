@@ -28,6 +28,7 @@
     background-origin: content-box; }
   .ArticleHeader-Collapse {
     position: absolute;
-    top: 120px; }
+    top: 120px;
+    max-width: 768px; }
   .ArticleHeader .isMenuClassc {
     display: flex; }
