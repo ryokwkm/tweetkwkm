@@ -52,8 +52,10 @@
 
   &-Collapse {
     position: absolute;
-    top: 120px;
+    top: 105px;
     max-width: 768px;
+    min-width: 320px;
+    border-bottom: solid 1px #282c34;
   }
 
 
