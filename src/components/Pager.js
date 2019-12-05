@@ -6,6 +6,7 @@ import Pagination from "material-ui-flat-pagination"
 
 const theme = createMuiTheme()
 
+// 使ってないのでは？
 class Pager extends React.Component {
   constructor(props) {
     super(props)
