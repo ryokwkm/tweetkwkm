@@ -44,6 +44,30 @@ class MainSportsList extends React.Component {
 
   componentDidMount() {}
 
+  // itemsの中にキーワードが含まれているか確認
+  getKeywordIndex(items, keyword) {
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].keyword && items[i].keyword === keyword) {
+        return i
+      }
+    }
+    return null
+  }
+
+  listPush(parents, article) {
+    parents.push({
+      keyword: article.keyword,
+      favorite: 0,
+      count: 1,
+    })
+  }
+
+  addFavorite(parents, article) {
+    var index = this.getKeywordIndex(parents, article.keyword)
+    parents[index].favorite += Number(article.favorite)
+    parents[index].count++
+  }
+
   async loadMoreItems(startIndex, stopIndex) {
     const API_LIMIT = 23 // 本来２４にしたいが、goバッチ側でなぜか23が保存されていない
     // console.log("Loading...", this.state.items.length, startIndex)
@@ -65,14 +89,24 @@ class MainSportsList extends React.Component {
 
     console.log(data)
     // 親記事１件ごとにリアクションを挿入していく
+    // parents[0] = key, favorite, date ...
     data.forEach(article => {
-      console.log(article.keyword, parents.includes(article.keyword))
-      if (!parents.includes(article.keyword)) {
-        parents.push(article.keyword)
+      if (parents.length === 0) {
+        this.listPush(parents, article)
       }
+
+      if (this.getKeywordIndex(parents, article.keyword) === null) {
+        this.listPush(parents, article)
+      } else {
+        this.addFavorite(parents, article)
+      }
+
+      // if (!parents.includes(article.keyword)) {
+      //   parents.push(article.keyword)
+      // }
       items.push(article)
     })
-    console.log("test", parents, items)
+    console.log("parents complete", parents)
 
     this.setState({
       moreItemsLoading: false,
@@ -110,9 +144,11 @@ class MainSportsList extends React.Component {
         <ListHeadFate
           startIndex={this.state.startIndex}
           parents={this.state.parents}
+          items={this.state.items}
           isDetail={this.state.isDetail}
           handleSetDetail={this.handleSetDetail}
           isScrollDown={this.state.isScrollDown}
+          getKeywordIndex={this.getKeywordIndex}
         />
         <InfinityList
           items={this.state.items}

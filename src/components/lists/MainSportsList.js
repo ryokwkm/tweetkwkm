@@ -80,7 +80,7 @@ class MainSportsList extends React.Component {
         }
       }
     })
-    console.log(items, parents)
+    console.log("items=", items, "prents = ", parents)
     this.setState({
       moreItemsLoading: false,
       page: this.state.page + 1,
