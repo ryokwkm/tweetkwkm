@@ -1,6 +1,6 @@
 export const HOSTNAME = {
-  PRD: "https://ts.2chx.net/Api/get",
-  DEV: "https://ts.2chx.net/Api/get", // "http://asuseka.net:8888/Api/get",
+  PRD: "https://ts.2chx.net/",
+  DEV: "https://ts.2chx.net/", // "http://asuseka.net:8888/Api/get",
 }
 
 export const WORDS = {

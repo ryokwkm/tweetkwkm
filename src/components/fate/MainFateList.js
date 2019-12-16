@@ -2,11 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
 // import HideOnScroll from "../menus/HideOnScroll"
-import ListHead from "./ListHead"
-import InfinityList from "./InfinityList"
+import ListHeadFate from "../fate/ListHeadFate"
+import InfinityList from "../lists/InfinityList"
 import * as PATH from "../../constants/common"
 import MenuBar from "../menus/MenuBar"
-import ListHeadDetail from "./ListHeadDetail"
 
 const styles = theme => ({
   root: {
@@ -56,10 +55,7 @@ class MainSportsList extends React.Component {
     this.setState({ moreItemsLoading: true })
     const response = await fetch(
       PATH.getUrl(
-        "Api/get?beforeDay=0&country=" +
-          this.state.page +
-          "&v=" +
-          this.props.appId
+        "Fate/get?page=0&country=" + this.state.page + "&v=" + this.props.appId
       )
     )
 
@@ -67,20 +63,17 @@ class MainSportsList extends React.Component {
     var items = []
     var parents = []
 
+    console.log(data)
     // 親記事１件ごとにリアクションを挿入していく
-    data.forEach(parent => {
-      const children = Object.assign({}, parent.reactions)
-      parent.reactions = null
-      items.push(parent)
-      parents.push(parent)
-      // リアクションごとの処理
-      if (children) {
-        for (const key in children) {
-          items.push(children[key])
-        }
+    data.forEach(article => {
+      console.log(article.keyword, parents.includes(article.keyword))
+      if (!parents.includes(article.keyword)) {
+        parents.push(article.keyword)
       }
+      items.push(article)
     })
-    console.log(items, parents)
+    console.log("test", parents, items)
+
     this.setState({
       moreItemsLoading: false,
       page: this.state.page + 1,
@@ -114,10 +107,9 @@ class MainSportsList extends React.Component {
         {/*  <MenuBar /> */}
         {/* </HideOnScroll> */}
         <MenuBar />
-        <ListHead
+        <ListHeadFate
           startIndex={this.state.startIndex}
           parents={this.state.parents}
-          items={this.state.items}
           isDetail={this.state.isDetail}
           handleSetDetail={this.handleSetDetail}
           isScrollDown={this.state.isScrollDown}
@@ -128,12 +120,6 @@ class MainSportsList extends React.Component {
           moreItemsLoading={this.state.moreItemsLoading}
           loadMoreItems={this.loadMoreItems.bind(this)}
           handleScroll={this.handleScroll.bind(this)}
-          isDetail={this.state.isDetail}
-        />
-        <ListHeadDetail
-          startIndex={this.state.startIndex}
-          parents={this.state.parents}
-          items={this.state.items}
           isDetail={this.state.isDetail}
         />
       </div>
