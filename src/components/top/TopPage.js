@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles/index"
 // import HideOnScroll from "../menus/HideOnScroll"
-import ListHeadFate from "../fate/ListHeadFate"
-import InfinityList from "../lists/InfinityList"
 import * as PATH from "../../constants/common"
 import MenuBar from "../menus/MenuBar"
+// import ListHeadDetail from "../lists/ListHeadDetail"
+import Topic from "./Topic"
 
 const styles = theme => ({
   root: {
@@ -26,7 +26,7 @@ const styles = theme => ({
   },
 })
 
-class MainSportsList extends React.Component {
+class TopPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -40,33 +40,11 @@ class MainSportsList extends React.Component {
       isDetail: true,
       isScrollDown: false,
     }
+    console.log(this.props)
+    this.loadMoreItems()
   }
 
   componentDidMount() {}
-
-  // itemsの中にキーワードが含まれているか確認
-  getKeywordIndex(items, keyword) {
-    for (var i = 0; i < items.length; i++) {
-      if (items[i].keyword && items[i].keyword === keyword) {
-        return i
-      }
-    }
-    return null
-  }
-
-  listPush(parents, article) {
-    parents.push({
-      keyword: article.keyword,
-      favorite: 0,
-      count: 1,
-    })
-  }
-
-  addFavorite(parents, article) {
-    var index = this.getKeywordIndex(parents, article.keyword)
-    parents[index].favorite += Number(article.favorite)
-    parents[index].count++
-  }
 
   async loadMoreItems(startIndex, stopIndex) {
     const API_LIMIT = 23 // 本来２４にしたいが、goバッチ側でなぜか23が保存されていない
@@ -79,7 +57,10 @@ class MainSportsList extends React.Component {
     this.setState({ moreItemsLoading: true })
     const response = await fetch(
       PATH.getUrl(
-        "Fate/get?page=0&country=" + this.state.page + "&v=" + this.props.appId
+        "Api/get?beforeDay=0&country=" +
+          this.state.page +
+          "&v=" +
+          this.props.appId
       )
     )
 
@@ -87,27 +68,20 @@ class MainSportsList extends React.Component {
     var items = []
     var parents = []
 
-    console.log(data)
     // 親記事１件ごとにリアクションを挿入していく
-    // parents[0] = key, favorite, date ...
-    data.forEach(article => {
-      if (parents.length === 0) {
-        this.listPush(parents, article)
+    data.forEach(parent => {
+      const children = Object.assign({}, parent.reactions)
+      parent.reactions = null
+      items.push(parent)
+      parents.push(parent)
+      // リアクションごとの処理
+      if (children) {
+        for (const key in children) {
+          items.push(children[key])
+        }
       }
-
-      if (this.getKeywordIndex(parents, article.keyword) === null) {
-        this.listPush(parents, article)
-      } else {
-        this.addFavorite(parents, article)
-      }
-
-      // if (!parents.includes(article.keyword)) {
-      //   parents.push(article.keyword)
-      // }
-      items.push(article)
     })
-    console.log("parents complete", parents)
-
+    console.log("items=", items, "prents = ", parents)
     this.setState({
       moreItemsLoading: false,
       page: this.state.page + 1,
@@ -141,21 +115,11 @@ class MainSportsList extends React.Component {
         {/*  <MenuBar /> */}
         {/* </HideOnScroll> */}
         <MenuBar />
-        <ListHeadFate
+
+        <Topic
           startIndex={this.state.startIndex}
           parents={this.state.parents}
           items={this.state.items}
-          isDetail={this.state.isDetail}
-          handleSetDetail={this.handleSetDetail}
-          isScrollDown={this.state.isScrollDown}
-          getKeywordIndex={this.getKeywordIndex}
-        />
-        <InfinityList
-          items={this.state.items}
-          hasNextPage={true}
-          moreItemsLoading={this.state.moreItemsLoading}
-          loadMoreItems={this.loadMoreItems.bind(this)}
-          handleScroll={this.handleScroll.bind(this)}
           isDetail={this.state.isDetail}
         />
       </div>
@@ -163,8 +127,8 @@ class MainSportsList extends React.Component {
   }
 }
 
-MainSportsList.propTypes = {
+TopPage.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(MainSportsList)
+export default withStyles(styles)(TopPage)

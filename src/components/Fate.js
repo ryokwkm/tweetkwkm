@@ -1,7 +1,6 @@
 import React from "react"
 import ReactGA from "react-ga"
 import ListRouting from "./lists/ListRouting"
-import MainFateList from "./fate/MainFateList"
 import { withStyles } from "@material-ui/core"
 
 export const RouteContext = React.createContext()
@@ -36,7 +35,7 @@ class Fate extends React.Component {
         <RouteContext.Provider value={this.state}>
           <div className={this.props.parent}>
             <ListRouting self={this}>
-              <MainFateList appId={this.state.appId} />
+              {/* <MainFateList appId={this.state.appId} /> */}
             </ListRouting>
           </div>
         </RouteContext.Provider>

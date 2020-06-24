@@ -1,0 +1,33 @@
+.ArticleHeader {
+  position: relative; }
+
+.ArticleHeader .TopicHeader {
+  border-bottom: 1px solid #282c34 !important;
+  margin-top: 30px; }
+  .ArticleHeader .TopicHeader a {
+    text-decoration: none;
+    color: #282c34; }
+  .ArticleHeader .TopicHeader .link {
+    text-decoration: underline;
+    color: #dd1940; }
+  .ArticleHeader .TopicHeader-Image {
+    flex: 1;
+    height: 400px;
+    padding-top: 16px;
+    background-origin: content-box;
+    background-position: top;
+    background-position-x: center; }
+  .ArticleHeader .TopicHeader-Text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.9) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 24px; }
+  @media screen and (max-width: 740px) {
+    .ArticleHeader .TopicHeader-Image {
+      height: 276px; } }
